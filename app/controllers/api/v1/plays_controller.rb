@@ -9,7 +9,7 @@ module Api
           game.plays.create(user_id: request.headers["HTTP_USER_ID"], word: word)
           render json: game, status: 201
         else
-          render json: { "message": "#{word} is not a valid word." }
+          render json: { "message": "#{word} is not a valid word." }, status: 400
         end
       end
     end

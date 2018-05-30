@@ -28,8 +28,6 @@ require 'support/factory_bot'
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
-DatabaseCleaner.strategy = :truncation
-
 # WebMock.allow_net_connect!
 #
 # VCR.configure do |config|

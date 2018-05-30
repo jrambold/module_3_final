@@ -1,12 +1,26 @@
-Feature:
-As a guest user (no sign in necessary)
-When I visit "/"
-And I fill in a text box with "foxes"
-And I click "Validate Word"
-Then I should see a message that says "'foxes' is a valid word and its root form is 'fox'."
+require 'rails_helper'
 
-As a guest user
-When I visit "/"
-And I fill in a text box with "foxez"
-And I click "Validate Word"
-Then I should see a message that says "'foxez' is not a valid word."
+feature "User can search" do
+  scenario "user can search for a word to validate" do
+    visit "/"
+    within(".navbar") do
+      fill_in 'q', with: 'foxes'
+      click_on 'Validate Word'
+    end
+
+    expect(current_path).to eq('/search')
+
+
+
+    expect(page).to have_content("'foxes' is a valid word and its root form is fox.")
+
+    within(".navbar") do
+      fill_in 'q', with: 'foxez'
+      click_on 'Validate Word'
+    end
+
+
+    expect(page).to have_content("'foxez' is not a valid word.")
+
+  end
+end
