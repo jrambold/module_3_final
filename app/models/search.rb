@@ -4,13 +4,14 @@ class Search
     @word = word
   end
 
-  def word_roots
-    raw_stations = @search_service.get_url("/api/v1/inflections/en/#{@word}")
-    require 'pry'; binding.pry
-    stations = raw_stations[:fuel_stations].map do |station|
-      Station.new(station[:station_name],station[:street_address],station[:fuel_type_code],station[:distance],station[:access_days_time])
-    end
-    stations.sort_by(&:distance)
+  def word_root
+    raw_dictionary = @search_service.get_url("/api/v1/inflections/en/#{@word}")
+    find_root(raw_dictionary)
   end
 
+  private
+
+  def find_root(raw_dictionary)
+    root = raw_dictionary[:results].first[:lexicalEntries].first[:inflectionOf].first[:id]
+  end
 end
