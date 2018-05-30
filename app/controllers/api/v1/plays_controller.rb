@@ -3,10 +3,14 @@ module Api
     class PlaysController < ApiController
       def create
         game = Game.find(params[:game_id])
-        player = request.headers["HTTP_USER_ID"]
         word = request.headers["HTTP_WORD"]
-        game.plays.create(user_id: player, word: word)
-        render json: game, status: 201
+        search = Search.new(word)
+        if search.word_root
+          game.plays.create(user_id: request.headers["HTTP_USER_ID"], word: word)
+          render json: game, status: 201
+        else
+          render json: { "message": "#{word} is not a valid word." }
+        end
       end
     end
   end
