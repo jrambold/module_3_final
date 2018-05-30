@@ -13,6 +13,12 @@
     <nav>
       <div class="logo sm-col-left">
         <%= link_to "ScrabbleWeb", root_url %>
+        <%= form_tag :search, method: :get, class: "form-inline" do %>
+          <div class="form-group search-field">
+            <%= text_field_tag :q, "Search Word", class: "form-control" %>
+            <%= submit_tag "Locate", class: "btn btn-primary" %>
+          </div>
+        <% end %>
       </div>
     </nav>
 
