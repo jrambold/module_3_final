@@ -6,7 +6,11 @@ class Search
 
   def word_root
     raw_dictionary = @search_service.get_url("/api/v1/inflections/en/#{@word}")
-    find_root(raw_dictionary)
+    if raw_dictionary
+      find_root(raw_dictionary)
+    else
+      nil
+    end
   end
 
   private

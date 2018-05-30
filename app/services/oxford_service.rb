@@ -5,8 +5,11 @@ class OxfordService
 
   def get_url(url)
     response = conn.get(url)
-    require 'pry'; binding.pry
-    JSON.parse(response.body, symbolize_names: true)
+    if response.headers["content-type"].start_with?("application/json")
+      JSON.parse(response.body, symbolize_names: true)
+    else
+      nil
+    end
   end
 
   private
