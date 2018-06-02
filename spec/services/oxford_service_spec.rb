@@ -17,5 +17,13 @@ describe OxfordService do
         expect(result).to be_nil
       end
     end
+    context "get_inflections" do
+      it "returns json for valid word" do
+        search_service = OxfordService.new
+        raw_dictionary = search_service.get_inflections("foxes")
+        root = raw_dictionary[:results].first[:lexicalEntries].first[:inflectionOf].first[:id]
+        expect(root).to eq('fox')
+      end
+    end
   end
 end

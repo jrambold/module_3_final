@@ -12,6 +12,10 @@ class OxfordService
     end
   end
 
+  def get_inflections(word)
+    get_url("/api/v1/inflections/en/#{word}")
+  end
+
   private
     attr_reader :headers
 

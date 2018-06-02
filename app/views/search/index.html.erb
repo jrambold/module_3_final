@@ -1,5 +1,5 @@
-<% if @word[:root] %>
-  <p>'<%= @word[:word] %>' is a valid word and its root form is <%= @word[:root] %>.</p>
+<% if @search.is_valid? %>
+  <p>'<%= @search.word %>' is a valid word and its root form is <%= @search.root %>.</p>
 <% else %>
-  <p>'<%= @word[:word] %>' is not a valid word.</p>
+  <p>'<%= @search.word %>' is not a valid word.</p>
 <% end %>
