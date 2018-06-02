@@ -6,7 +6,7 @@ describe SearchPresenter do
       it "returns the word and root word" do
         search = SearchPresenter.new('foxes')
 
-        expect(search.word).to eq('foxex')
+        expect(search.word).to eq('foxes')
         expect(search.root).to eq('fox')
       end
 
@@ -14,8 +14,8 @@ describe SearchPresenter do
         valid_search = SearchPresenter.new('foxes')
         invalid_search = SearchPresenter.new('foxez')
 
-        expect(valid_search).to be_truthy
-        expect(invalid_search).to be_falsey
+        expect(valid_search.is_valid?).to be_truthy
+        expect(invalid_search.is_valid?).to be_falsey
       end
     end
   end
